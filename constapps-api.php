@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: ConstApps Mobile App Builder
- * Plugin URI: https://github.com/ConstApps/constapps-wordpress-api
+ * Plugin URI: https://constapps.com
  * Description: The ConstApps Settings and APIs for supporting the ConstApps built mobile application to be connected to Wordpress
  * Version: 1.0.0
  * Author: ConstApps
@@ -10,7 +10,7 @@
  * Text Domain: ConstApps-Mobile-App-Builder
  */
 
-defined('ABSPATH') or wp_die( 'No script kiddies please!' );
+defined('ABSPATH') or wp_die( 'Hey, you cant access this file, you silly human!' );
 
 include plugin_dir_path(__FILE__)."includes/RenameGenerate.php";
 
@@ -32,7 +32,7 @@ class ConstappsCheckOut
             mkdir($path, 0777, true);
         }
         $templatePath = plugin_dir_path(__FILE__)."includes/ConstappsTemplate.php";
-        if (!copy($templatePath,$path."/ConstappsTemplate.php")) {
+        if (!copy($templatePath, $path."/ConstappsTemplate.php")) {
             return 0;
         }
 
@@ -76,28 +76,22 @@ class ConstappsCheckOut
 
 $constappsCheckOut = new ConstappsCheckOut();
 
-// use JO\Module\Templater\Templater;
 include plugin_dir_path(__FILE__)."includes/Templater/Templater.php";
 
 add_action('plugins_loaded', 'load_constapps_templater');
 function load_constapps_templater()
 {
-
-    // add our new custom templates
     $my_templater = new Templater(
         array(
-            // YOUR_PLUGIN_DIR or plugin_dir_path(__FILE__)
             'plugin_directory' => plugin_dir_path(__FILE__),
-            // should end with _ > prefix_
             'plugin_prefix' => 'plugin_prefix_',
-            // templates directory inside your plugin
             'plugin_template_directory' => 'templates',
         )
     );
     $my_templater->add(
         array(
             'page' => array(
-                'ConstappsTemplate.php' => 'Page Custom Template',
+                'templates/ConstappsTemplate.php' => 'Page Custom Template',
             ),
         )
     )->register();

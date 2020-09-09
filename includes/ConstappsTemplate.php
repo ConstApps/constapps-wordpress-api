@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: Constapps API
+* Template Name: ConstApps Mobile App Builder
 */
 
 function getValue(&$val, $default = '')
@@ -365,11 +365,11 @@ if (filter_has_var(INPUT_GET, 'order')):
                                                             <tr class="<?= esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
                                                                 <td class="product-name">
                                                                     <?= esc_html(apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key)) . '&nbsp;'; ?>
-                                                                    <?= esc_html(apply_filters('woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf('&times; %s', $cart_item['quantity']) . '</strong>', $cart_item, $cart_item_key)); ?>
+                                                                    <?= apply_filters('woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf('&times; %s', $cart_item['quantity']) . '</strong>', $cart_item, $cart_item_key); ?>
                                                                     <?= esc_html(WC()->cart->get_item_data($cart_item)); ?>
                                                                 </td>
                                                                 <td class="product-total">
-                                                                    <?= esc_html(apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key)); ?>
+                                                                    <?= apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); ?>
                                                                 </td>
                                                             </tr>
                                                             <?php
@@ -444,17 +444,15 @@ if (filter_has_var(INPUT_GET, 'order')):
                                                            id="payment_method_<?= esc_attr($data['payment_method']); ?>" checked="checked"
                                                            value="<?= esc_html($data['payment_method']); ?>"/>
 
-                                                    <input type="checkbox"
+                                                    <label><input type="checkbox"
                                                            class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
                                                            checked="checked" name="terms" id="terms">
+                                                           By checking checkmark you agree with terms and privacy policy.</label>
 
 
                                                     <?php do_action('woocommerce_review_order_before_submit'); ?>
-
-                                                    <?= esc_html(apply_filters('woocommerce_order_button_html', '<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="" />')); ?>
-
+                                                    <?= apply_filters('woocommerce_order_button_html', '<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Purchase" />'); ?>
                                                     <?php do_action('woocommerce_review_order_after_submit'); ?>
-
                                                     <?php wp_nonce_field('woocommerce-process_checkout'); ?>
                                                 </div>
                                                 <?php

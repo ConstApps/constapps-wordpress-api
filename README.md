@@ -21,7 +21,6 @@ our plugin will help you create mobile app for your Wordpress website. For more 
 
 ### Reference links
 - Website: https://constapps.com
-- Android demo: https://play.google.com/store/apps/details?id=com.LsInnovation.Constapps&hl=ru
 
 == Installation ==
 
